@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MMO Manager - Login</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fas fa-sign-in-alt"></i> ACESSO AO PORTAL</h2>
+        
+        <div th:if="${param.error}" style="color: #ff4d4d; margin-bottom: 15px; font-weight: bold;">
+            <i class="fas fa-exclamation-circle"></i> FALHA NA AUTENTICAÇÃO
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <label><i class="fas fa-user"></i> USUÁRIO</label>
+            <input type="text" name="username" placeholder="Seu nome de usuário" required />
+            
+            <label><i class="fas fa-key"></i> SENHA</label>
+            <input type="password" name="password" placeholder="Sua senha" required />
+            
+            <button type="submit"><i class="fas fa-bolt"></i> ENTRAR NO SISTEMA</button>
+        </form>
+        
+        <div style="margin-top: 20px;">
+            <a href="/usuario/cadastrar"><i class="fas fa-edit"></i> CRIAR NOVA CONTA</a>
+        </div>
+    </div>
+</body>
+</html>

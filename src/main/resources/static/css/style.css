@@ -1,0 +1,74 @@
+/* Reset básico para garantir a centralização */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle, #0a192f 0%, #02060c 100%);
+    color: #e0e0e0;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex; /* Ativa o Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    min-height: 100vh; /* Ocupa toda a altura da tela */
+    margin: 0;
+}
+
+/* O Container que "envelopa" o conteúdo do HTML */
+.container {
+    background: rgba(10, 25, 47, 0.95);
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #c1a35f; /* Dourado */
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+    width: 100%;
+    max-width: 450px; /* Largura máxima do card */
+    text-align: center;
+}
+
+h2 {
+    color: #c1a35f;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+/* Ajuste dos inputs para não ficarem colados (como na sua imagem) */
+input, select {
+    display: block; /* Faz cada um ocupar uma linha */
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0; /* Espaçamento entre campos */
+    background: #112240;
+    border: 1px solid #1d3557;
+    border-left: 4px solid #c1a35f;
+    color: white;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #c1a35f 0%, #8e743a 100%);
+    border: none;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    font-size: 0.8rem;
+    color: #00d4ff;
+    margin-top: 10px;
+}
+
+a {
+    color: #00d4ff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-top: 15px;
+}

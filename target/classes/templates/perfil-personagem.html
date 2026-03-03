@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MMO Manager - Perfil</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container" style="max-width: 500px;">
+        <h2 th:text="${personagem.nome}"><i class="fas fa-user"></i> Nome</h2>
+        
+        <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; border-left: 4px solid #c1a35f; text-align: left;">
+            <p><i class="fas fa-shield-alt"></i> <strong>Classe:</strong> <span th:text="${personagem.classe}"></span></p>
+            <p><i class="fas fa-star"></i> <strong>Nível Atual:</strong> <span th:text="${personagem.nivel}"></span></p>
+            <p><i class="fas fa-gamepad"></i> <strong>Jogo:</strong> <span th:text="${personagem.jogo.nome}"></span></p>
+        </div>
+
+        <hr style="border: 0.5px solid #1d3557; margin: 20px 0;">
+        
+        <div style="text-align: left;">
+            <h3><i class="fas fa-comments"></i> FEED DE ATIVIDADES</h3>
+            <p style="color: #888;">Nenhuma atividade recente encontrada.</p>
+        </div>
+
+        <br>
+        <a href="/home-gamer"><button style="background: #333; color: #fff;"><i class="fas fa-arrow-left"></i> VOLTAR</button></a>
+    </div>
+</body>
+</html>
