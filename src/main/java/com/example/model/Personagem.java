@@ -3,6 +3,7 @@ package com.example.model;
 import jakarta.persistence.*;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
 
 @Entity
 @Table(name = "personagem")
@@ -28,6 +29,9 @@ public class Personagem {
     @JoinColumn(name = "jogo_id", nullable = false)
     private Jogo jogo;
 
+    @OneToMany(mappedBy = "personagem", cascade = CascadeType.ALL)
+    private List<Post> posts;
+
     @ManyToMany
     @JoinTable(
         name = "personagem_seguidor",
@@ -38,7 +42,6 @@ public class Personagem {
 
     public Personagem() {}
 
-    // Getters e Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
@@ -59,4 +62,7 @@ public class Personagem {
 
     public Set<Personagem> getSeguindo() { return seguindo; }
     public void setSeguindo(Set<Personagem> seguindo) { this.seguindo = seguindo; }
+
+    public List<Post> getPosts() { return posts; }
+    public void setPosts(List<Post> posts) { this.posts = posts; }
 }

@@ -9,6 +9,7 @@ com\example\service\UsuarioService.class
 com\example\repository\PersonagemRepository.class
 com\example\repository\CurtidaRepository.class
 com\example\config\SecurityConfig.class
+com\example\controller\SocialController.class
 com\example\model\Jogo.class
 com\example\repository\PostRepository.class
 com\example\controller\PersonagemController.class

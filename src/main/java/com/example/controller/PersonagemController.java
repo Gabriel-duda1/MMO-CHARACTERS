@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.model.Personagem;
 import com.example.model.Usuario;
 import com.example.service.UsuarioService;
+import com.example.service.SocialService;
 import com.example.repository.PersonagemRepository;
 import com.example.repository.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class PersonagemController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private SocialService socialService;
+
     @GetMapping("/personagem/criar")
     public String formPersonagem(Model model) {
         model.addAttribute("jogos", jogoRepository.findAll());
@@ -36,7 +40,9 @@ public class PersonagemController {
         
         if (usuario != null) {
             personagem.setUsuario(usuario);
-            personagemRepository.save(personagem);
+            Personagem pSalvo = personagemRepository.save(personagem);
+            
+            socialService.criarPost(pSalvo, "Acabo de entrar no mundo de " + pSalvo.getJogo().getNome() + "!");
         }
         
         return "redirect:/home-gamer";

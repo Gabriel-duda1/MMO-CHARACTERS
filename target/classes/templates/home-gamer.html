@@ -7,41 +7,87 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container" style="max-width: 600px; margin: 0 auto;"> 
-        <h1><i class="fas fa-gamepad"></i> MEUS PERSONAGENS</h1>
-        <p>Logado como: <strong th:text="${#authentication.name}" style="color: #00d4ff;"></strong></p>
-        
-        <a th:href="@{/personagem/criar}">
-            <button><i class="fas fa-plus-circle"></i> CRIAR PERSONAGEM</button>
+<div class="container" style="max-width: 600px; margin: 0 auto;">
+
+    <h1>
+        <i class="fas fa-gamepad"></i> MEUS PERSONAGENS
+    </h1>
+
+    <p>
+        Logado como:
+        <strong th:text="${#authentication != null ? #authentication.name : 'Usuário'}"
+                style="color: #00d4ff;">
+        </strong>
+    </p>
+
+    <div style="display: flex; gap: 10px;">
+        <a th:href="@{/personagem/criar}" style="flex: 1;">
+            <button style="width: 100%;">
+                <i class="fas fa-plus-circle"></i> CRIAR PERSONAGEM
+            </button>
         </a>
 
-        <div style="margin-top: 25px;">
-            <div th:each="p : ${personagens}" style="border: 1px solid #c1a35f; margin: 15px 0; padding: 15px; border-radius: 8px; background: rgba(0,0,0,0.5); text-align: left;">
-                <h3 style="margin-top: 0;"><i class="fas fa-user-shield"></i> <span th:text="${p.nome}"></span></h3>
-                <p><i class="fas fa-scroll"></i> <strong>Classe:</strong> <span th:text="${p.classe}"></span></p>
-                <p><i class="fas fa-level-up-alt"></i> <strong>Nível:</strong> <span th:text="${p.nivel}"></span></p>
-                
-                <p><i class="fas fa-atlas"></i> <strong>Universo:</strong> 
-                   <span th:text="${p.jogo?.nome} ?: 'Não definido'"></span>
+        <a th:href="@{/feed}" style="flex: 1;">
+            <button style="width: 100%; background: linear-gradient(to bottom, #00d4ff, #005f73);">
+                <i class="fas fa-rss"></i> VER FEED GLOBAL
+            </button>
+        </a>
+    </div>
+
+    <div style="margin-top: 25px;">
+
+        <div th:if="${personagens != null}">
+            <div th:each="p : ${personagens}"
+                 style="border: 1px solid #c1a35f; margin: 15px 0; padding: 15px; border-radius: 8px; background: rgba(0,0,0,0.5); text-align: left;">
+
+                <h3 style="margin-top: 0;">
+                    <i class="fas fa-user-shield"></i>
+                    <span th:text="${p.nome}"></span>
+                </h3>
+
+                <p>
+                    <i class="fas fa-scroll"></i>
+                    <strong>Classe:</strong>
+                    <span th:text="${p.classe}"></span>
                 </p>
-                
+
+                <p>
+                    <i class="fas fa-level-up-alt"></i>
+                    <strong>Nível:</strong>
+                    <span th:text="${p.nivel}"></span>
+                </p>
+
+                <p>
+                    <i class="fas fa-atlas"></i>
+                    <strong>Universo:</strong>
+                    <span th:text="${p.jogo != null ? p.jogo.nome : 'Não definido'}"></span>
+                </p>
+
                 <a th:href="@{/personagem/perfil/{id}(id=${p.id})}">
-                    <button style="width: auto; padding: 8px 20px; font-size: 0.8rem;">ACESSAR PERFIL</button>
+                    <button style="width: auto; padding: 8px 20px; font-size: 0.8rem;">
+                        ACESSAR PERFIL
+                    </button>
                 </a>
-            </div>
-            
-            <div th:if="${#lists.isEmpty(personagens)}" style="color: #aaa; margin-top: 20px;">
-                <p>Você ainda não possui personagens cadastrados.</p>
+
             </div>
         </div>
 
-        <hr style="border: 0.5px solid #1d3557; margin: 20px 0;">
-        
-        <form th:action="@{/logout}" method="post">
-            <button type="submit" style="background: linear-gradient(to bottom, #ff4d4d, #b30000); color: white;">
-                <i class="fas fa-power-off"></i> SAIR DO SISTEMA
-            </button>
-        </form>
+        <div th:if="${personagens == null or #lists.isEmpty(personagens)}"
+             style="color: #aaa; margin-top: 20px;">
+            <p>Você ainda não possui personagens cadastrados.</p>
+        </div>
+
     </div>
+
+    <hr style="border: 0.5px solid #1d3557; margin: 20px 0;">
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit"
+                style="background: linear-gradient(to bottom, #ff4d4d, #b30000); color: white;">
+            <i class="fas fa-power-off"></i> SAIR DO SISTEMA
+        </button>
+    </form>
+
+</div>
 </body>
 </html>
